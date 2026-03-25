@@ -28,6 +28,8 @@
 docker compose up --build
 ```
 
+Note: runs with `SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop`, so schema and data are recreated for each run and are not retained on the next startup.
+
 ## API Documentation
 
 API entrypoint via nginx:`http://localhost:8080`

@@ -44,8 +44,11 @@ public class TransactionService {
     }
 
     public List<Transaction> getTransactions(Integer accountId) {
-        accountRepository.findById(accountId)
-                .orElseThrow(() -> new AccountNotFoundException(accountId));
+
+        if (!accountRepository.existsById(accountId)) {
+            throw new AccountNotFoundException(accountId);
+        }
+
         return transactionRepository.findByAccountIdOrderByCreatedAtDesc(accountId);
     }
 
