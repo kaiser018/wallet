@@ -1,0 +1,48 @@
+services:
+  database:
+    image: postgres:alpine
+    container_name: postgresql
+    environment:
+      POSTGRES_DB: wallet
+      POSTGRES_USER: kaiserdapar
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+  wallet-1:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: wallet-1
+      depends_on:
+        - database
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/wallet
+        SPRING_DATASOURCE_USERNAME: kaiserdapar
+        SPRING_DATASOURCE_PASSWORD: password
+        SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      expose:
+        - "8080"
+  wallet-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wallet-2
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/wallet
+      SPRING_DATASOURCE_USERNAME: kaiserdapar
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+    expose:
+      - "8080"
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    depends_on:
+      - wallet-1
+      - wallet-2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
