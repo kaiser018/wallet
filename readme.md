@@ -25,7 +25,6 @@
 
 ## Run
 ```bash
-./mvnw -DskipTests clean package
 docker compose up --build
 ```
 
