@@ -7,6 +7,21 @@
 - Wallet balance has a maximum of `2,147,483,647` cents (~21M currency units).
 - [Postman Collection](https://postman.co/workspace/kaiserdapar~2abd39d8-663f-4815-b3df-eed86dfd689d/collection/562401-2e811059-5ae7-4459-aab2-420f17ca92e9?action=share&creator=562401)
 
+## Technology
+
+- **Java**: 25
+- **JDK**: temurin-25.0.2
+- **Maven**: 3.9.14
+- **Spring Boot**: 4.0.4
+- **Spring Framework**
+  - Spring Web
+  - Spring Data JPA
+  - PostgreSQL Driver
+- **Database**: PostgreSQL
+- **Containers**: Docker, Docker Compose
+  - PostgreSQL (Alpine)
+  - NGINX (Alpine)
+- **Testing & Scripting**: Bash, Curl, jq
 
 ## Run
 ```bash
