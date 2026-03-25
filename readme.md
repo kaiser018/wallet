@@ -25,6 +25,8 @@
 
 ## Run
 ```bash
+git clone https://github.com/kaiser018/wallet.git
+cd wallet
 docker compose up --build
 ```
 
